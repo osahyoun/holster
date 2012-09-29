@@ -6,8 +6,9 @@ describe Plugins::Issues do
     subject { Plugins::Issues::Parser.new text }
 
     context 'with all options' do
-      let(:text) { "Fix homepage | Homepage graphic is wrong | assign: bob" }
+      let(:text) { "web | Fix homepage | Homepage graphic is wrong | assign: bob" }
 
+      its(:repos) { should == 'web' }
       its(:assignee) { should == 'bob' }
       its(:title) { should == 'Fix homepage' }
       its(:body) { should == 'Homepage graphic is wrong' }
@@ -15,8 +16,9 @@ describe Plugins::Issues do
     end
 
     context 'just simple' do
-      let(:text) { "title | body" }
-
+      let(:text) { "web | title | body" }
+      
+      its(:repos) { should == 'web' }
       its(:title) { should == "title" }
       its(:body) { should == "body" }
     end

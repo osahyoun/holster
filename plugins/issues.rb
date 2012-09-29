@@ -1,3 +1,5 @@
+require 'github_api'
+
 module Plugins
   # For creating and updating GitHub Issues
   class Issues
@@ -22,13 +24,17 @@ module Plugins
       def milestone
         # TODO
       end
+      
+      def repos
+        tokens[0]
+      end
 
       def title
-        tokens.first
+        tokens[1]
       end
 
       def body
-        tokens[1]
+        tokens[2]
       end
 
       def assignee
